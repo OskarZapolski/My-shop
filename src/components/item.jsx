@@ -22,6 +22,7 @@ export function Item(props) {
               rate: props.rate,
               id: props.id,
               selectedSize: props.selectedSize,
+              category: props.category,
             },
           })
         }

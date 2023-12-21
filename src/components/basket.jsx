@@ -19,7 +19,12 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
   }
   return (
     <div>
-      <Header dispatch={dispatch} text={text} showSearch={showSearch} />
+      <Header
+        dispatch={dispatch}
+        text={text}
+        showSearch={showSearch}
+        basket={items}
+      />
       {!isEmpty ? (
         <div>
           <div className="grid">

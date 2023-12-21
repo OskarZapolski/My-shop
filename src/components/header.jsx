@@ -1,9 +1,14 @@
 import { ACTIONS } from "../App";
-export function Header({ dispatch, text, showSearch, style }) {
+export function Header({ dispatch, text, showSearch, style, basket }) {
+  console.log(basket);
   return (
     <>
       <header style={style}>
-        <img src="logo192.png" className="logo" />
+        <img
+          src="logo192.png"
+          className="logo"
+          onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
+        />
         <div className="header-content">
           <ul>
             <li>
@@ -22,9 +27,7 @@ export function Header({ dispatch, text, showSearch, style }) {
                 />
               )}
             </li>
-            <li onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}>
-              Home
-            </li>
+
             <li
               onClick={() =>
                 dispatch({
@@ -67,11 +70,12 @@ export function Header({ dispatch, text, showSearch, style }) {
             </li>
             <li>
               <img
-                src="shopping-basket.png"
+                src="basket2.png"
                 alt=""
                 className="basket"
                 onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
               />
+              {basket.length > 0 && <div>{basket.length}</div>}
             </li>
           </ul>
         </div>

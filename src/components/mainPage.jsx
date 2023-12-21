@@ -1,9 +1,14 @@
 import { ACTIONS } from "../App";
 import { Header } from "./header";
-export function MainPage({ text, dispatch, items, showSearch }) {
+export function MainPage({ text, dispatch, items, showSearch, basket }) {
   return (
     <>
-      <Header dispatch={dispatch} text={text} showSearch={showSearch} />
+      <Header
+        dispatch={dispatch}
+        text={text}
+        showSearch={showSearch}
+        basket={basket}
+      />
 
       <main>
         {items.length != 0 ? (

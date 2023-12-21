@@ -4,6 +4,7 @@ import { Item } from "./components/item";
 import { MainPage } from "./components/mainPage";
 import { SubPage } from "./components/subPage";
 import { BasketPage } from "./components/basket";
+import { nanoid } from "nanoid";
 
 export const ACTIONS = {
   PRODUCT_CLICKED: "product-clicked",
@@ -49,7 +50,9 @@ function reducer(state, { type, payload }) {
           payload.id,
           payload.selectedSize,
           payload.showProduct,
-          state.isSizeSelected
+          state.isSizeSelected,
+          payload.category,
+          state.basket
         ),
       };
     case ACTIONS.CLOSE_POPUP:
@@ -78,7 +81,7 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         emptyBasket: false,
-        loadedPage: "basketPage",
+
         basket: [
           ...state.basket,
           {
@@ -120,7 +123,9 @@ function reducer(state, { type, payload }) {
           payload.id,
           payload.size,
           payload.showProduct,
-          payload.isSizeSelected
+          payload.isSizeSelected,
+          payload.category,
+          state.basket
         ),
       };
   }
@@ -130,7 +135,9 @@ function deleteProduct(data, id) {
   return data.filter((data) => data.id != id);
 }
 function updateData(data, value) {
-  return data.map((data) => ({ ...data, selectedSize: value }));
+  return data.map((data) => {
+    return { ...data, selectedSize: value };
+  });
 }
 function Addsize(data, id, size) {
   return data.map((data) => {
@@ -168,7 +175,7 @@ export default function App() {
       .then((data) => dispatch({ type: ACTIONS.FETCH, payload: { data } }))
       .catch((err) => console.log(err));
   }, []);
-
+  //zrob pokazanie ile jest w koszyku el
   function showProduct(
     img,
     title,
@@ -178,7 +185,9 @@ export default function App() {
     id,
     size,
     showProduct,
-    isSizeSelected
+    isSizeSelected,
+    category,
+    basket
   ) {
     return (
       <SubPage
@@ -191,10 +200,12 @@ export default function App() {
         price={price}
         rate={rate}
         text={state.text}
-        id={id}
+        id={nanoid()}
         selectedSize={size}
         showProduct={showProduct}
         showSearch={false}
+        category={category}
+        basket={basket}
       />
     );
   }
@@ -215,7 +226,7 @@ export default function App() {
       />
     );
   });
-  console.log(items);
+
   let toLoad;
   if (state.loadedPage == "MainPage") {
     toLoad = (
@@ -224,6 +235,7 @@ export default function App() {
         dispatch={dispatch}
         items={items}
         showSearch={true}
+        basket={state.basket}
       />
     );
   } else if (state.loadedPage == "subPage") {
