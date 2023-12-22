@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import { Item } from "./components/item";
 import { MainPage } from "./components/mainPage";
@@ -81,7 +81,6 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         emptyBasket: false,
-
         basket: [
           ...state.basket,
           {
@@ -92,6 +91,19 @@ function reducer(state, { type, payload }) {
             selectedSize: payload.selectedSize,
           },
         ],
+        subPage: payload.showProduct(
+          payload.img,
+          payload.title,
+          payload.description,
+          payload.price,
+          payload.rate,
+          payload.id,
+          payload.size,
+          payload.showProduct,
+          payload.isSizeSelected,
+          payload.category,
+          state.basket.length + 1
+        ),
       };
     case ACTIONS.GO_TO_BASKET:
       return {
@@ -125,7 +137,7 @@ function reducer(state, { type, payload }) {
           payload.showProduct,
           payload.isSizeSelected,
           payload.category,
-          state.basket
+          state.basket.length
         ),
       };
   }
@@ -175,7 +187,7 @@ export default function App() {
       .then((data) => dispatch({ type: ACTIONS.FETCH, payload: { data } }))
       .catch((err) => console.log(err));
   }, []);
-  //zrob pokazanie ile jest w koszyku el
+
   function showProduct(
     img,
     title,
@@ -189,6 +201,7 @@ export default function App() {
     category,
     basket
   ) {
+    console.log(state.basket);
     return (
       <SubPage
         isSizeSelected={isSizeSelected}

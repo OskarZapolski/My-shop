@@ -75,7 +75,7 @@ export function Header({ dispatch, text, showSearch, style, basket }) {
                 className="basket"
                 onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
               />
-              {basket.length > 0 && <div>{basket.length}</div>}
+              {basket > 0 && <div>{basket}</div>}
             </li>
           </ul>
         </div>

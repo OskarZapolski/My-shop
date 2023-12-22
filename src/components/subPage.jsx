@@ -17,6 +17,7 @@ export function SubPage({
   category,
   basket,
 }) {
+  console.log(basket);
   const style = {
     backgroundImage: `url(${img})`,
   };
@@ -67,11 +68,16 @@ export function SubPage({
           dispatch({
             type: ACTIONS.ADD_PRODUCT_TO_BASKET,
             payload: {
-              img: img,
-              title: title,
-              price: price,
-              id: id,
+              id,
+              title,
+              description,
+              rate,
+              img,
+              showProduct,
+              price,
+              isSizeSelected: true,
               selectedSize: true,
+              category,
             },
           })
         }
@@ -91,11 +97,16 @@ export function SubPage({
             dispatch({
               type: ACTIONS.ADD_PRODUCT_TO_BASKET,
               payload: {
-                img: img,
-                title: title,
-                price: price,
-                id: id,
-                selectedSize: selectedSize,
+                id,
+                size,
+                title,
+                description,
+                rate,
+                selectedSize,
+                img,
+                showProduct,
+                price,
+                isSizeSelected: true,
               },
             })
           }
