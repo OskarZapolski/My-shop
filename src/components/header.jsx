@@ -1,6 +1,11 @@
 import { ACTIONS } from "../App";
-export function Header({ dispatch, text, showSearch, style, basket }) {
-  console.log(basket);
+export function Header({
+  dispatch,
+  text,
+  showSearch,
+  style,
+  NumOfItemsInBasket,
+}) {
   return (
     <>
       <header style={style}>
@@ -68,14 +73,16 @@ export function Header({ dispatch, text, showSearch, style, basket }) {
             >
               Electronics
             </li>
-            <li>
+            <li className="relative">
               <img
                 src="basket2.png"
                 alt=""
                 className="basket"
                 onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
               />
-              {basket > 0 && <div>{basket}</div>}
+              {NumOfItemsInBasket > 0 && (
+                <div className="num-items-basket">{NumOfItemsInBasket}</div>
+              )}
             </li>
           </ul>
         </div>

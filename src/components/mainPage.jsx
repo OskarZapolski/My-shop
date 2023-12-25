@@ -7,7 +7,7 @@ export function MainPage({ text, dispatch, items, showSearch, basket }) {
         dispatch={dispatch}
         text={text}
         showSearch={showSearch}
-        basket={basket}
+        NumOfItemsInBasket={basket}
       />
 
       <main>

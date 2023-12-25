@@ -17,6 +17,7 @@ export function SubPage({
   category,
   basket,
 }) {
+  console.log(selectedSize);
   console.log(basket);
   const style = {
     backgroundImage: `url(${img})`,
@@ -106,7 +107,7 @@ export function SubPage({
                 img,
                 showProduct,
                 price,
-                isSizeSelected: true,
+                isSizeSelected: false,
               },
             })
           }
@@ -124,7 +125,7 @@ export function SubPage({
         text={text}
         showSearch={showSearch}
         style={{ position: "fixed", width: "100vw", zIndex: "2" }}
-        basket={basket}
+        NumOfItemsInBasket={basket}
       />
       <div className="sub-page" key={id}>
         <div style={style} className="sub-image-product"></div>

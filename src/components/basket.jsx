@@ -23,7 +23,7 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
         dispatch={dispatch}
         text={text}
         showSearch={showSearch}
-        basket={items}
+        NumOfItemsInBasket={items}
       />
       {!isEmpty ? (
         <div>
@@ -31,7 +31,7 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
             <div className="basket-body">{products}</div>
             <div className="div-paying">
               <div className="total-price">
-                <p>SUM:</p> <p>{sum.toFixed(2)}$</p>
+                <p>TOTAL:</p> <p>{sum.toFixed(2)}$</p>
               </div>
               <button className="basket-pay-btn">PAY</button>
             </div>

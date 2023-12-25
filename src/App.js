@@ -98,7 +98,7 @@ function reducer(state, { type, payload }) {
           payload.price,
           payload.rate,
           payload.id,
-          payload.size,
+          (payload.size = false),
           payload.showProduct,
           payload.isSizeSelected,
           payload.category,
@@ -201,7 +201,6 @@ export default function App() {
     category,
     basket
   ) {
-    console.log(state.basket);
     return (
       <SubPage
         isSizeSelected={isSizeSelected}
@@ -248,7 +247,7 @@ export default function App() {
         dispatch={dispatch}
         items={items}
         showSearch={true}
-        basket={state.basket}
+        basket={state.basket.length}
       />
     );
   } else if (state.loadedPage == "subPage") {
