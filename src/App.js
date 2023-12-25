@@ -142,7 +142,7 @@ function reducer(state, { type, payload }) {
       };
   }
 }
-//wybierz size
+//alert ze nowy item in basket zrob
 function deleteProduct(data, id) {
   return data.filter((data) => data.id != id);
 }
