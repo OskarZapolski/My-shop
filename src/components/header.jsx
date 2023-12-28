@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ACTIONS } from "../App";
 export function Header({
   dispatch,
@@ -7,6 +7,22 @@ export function Header({
   style,
   NumOfItemsInBasket,
 }) {
+  const [message, setMessage] = useState(false);
+  function Alert() {
+    setTimeout(() => {
+      setMessage(true);
+    }, 3000);
+  }
+  useEffect(() => {
+    setMessage(false);
+    Alert();
+  }, [NumOfItemsInBasket]);
+  let toLoad;
+  if (message) {
+    toLoad = <div className="num-items-basket">{NumOfItemsInBasket}</div>;
+  } else {
+    toLoad = <div className="alert-new-item">new item</div>;
+  }
   return (
     <>
       <header style={style}>
@@ -81,9 +97,7 @@ export function Header({
                 className="basket"
                 onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
               />
-              {NumOfItemsInBasket > 0 && (
-                <div className="num-items-basket">{NumOfItemsInBasket}</div>
-              )}
+              {NumOfItemsInBasket > 0 && toLoad}
             </li>
           </ul>
         </div>

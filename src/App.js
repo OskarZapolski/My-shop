@@ -81,6 +81,7 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         emptyBasket: false,
+        alert: "new item in basket",
         basket: [
           ...state.basket,
           {
@@ -121,6 +122,7 @@ function reducer(state, { type, payload }) {
         ...state,
         basket: deleteProduct(state.basket, payload.id),
       };
+
     case ACTIONS.SELECT_SIZE:
       return {
         ...state,

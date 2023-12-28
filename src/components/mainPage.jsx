@@ -1,6 +1,6 @@
 import { ACTIONS } from "../App";
 import { Header } from "./header";
-export function MainPage({ text, dispatch, items, showSearch, basket }) {
+export function MainPage({ text, dispatch, items, showSearch, basket, alert }) {
   return (
     <>
       <Header
