@@ -26,7 +26,7 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
         NumOfItemsInBasket={items}
       />
       {!isEmpty ? (
-        <div>
+        <div className="basket-main">
           <div className="grid">
             <div className="basket-body">{products}</div>
             <div className="div-paying">
