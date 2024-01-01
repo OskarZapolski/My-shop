@@ -5,6 +5,7 @@ import { MainPage } from "./components/mainPage";
 import { SubPage } from "./components/subPage";
 import { BasketPage } from "./components/basket";
 import { nanoid } from "nanoid";
+import { Route, Link, Routes } from "react-router-dom";
 
 export const ACTIONS = {
   PRODUCT_CLICKED: "product-clicked",
@@ -144,7 +145,7 @@ function reducer(state, { type, payload }) {
       };
   }
 }
-//alert ze nowy item in basket zrob
+
 function deleteProduct(data, id) {
   return data.filter((data) => data.id != id);
 }
@@ -241,30 +242,85 @@ export default function App() {
     );
   });
 
-  let toLoad;
-  if (state.loadedPage == "MainPage") {
-    toLoad = (
-      <MainPage
-        text={state.text}
-        dispatch={dispatch}
-        items={items}
-        showSearch={true}
-        basket={state.basket.length}
-      />
-    );
-  } else if (state.loadedPage == "subPage") {
-    toLoad = state.subPage;
-  } else {
-    toLoad = (
-      <BasketPage
-        dispatch={dispatch}
-        text={state.text}
-        items={state.basket}
-        isEmpty={state.emptyBasket}
-        showSearch={false}
-      />
-    );
-  }
+  // let toLoad;
+  // if (state.loadedPage == "MainPage") {
+  //   toLoad = (
+  //     <MainPage
+  //       text={state.text}
+  //       dispatch={dispatch}
+  //       items={items}
+  //       showSearch={true}
+  //       basket={state.basket.length}
+  //     />
+  //   );
+  // } else if (state.loadedPage == "subPage") {
+  //   toLoad = state.subPage;
+  // } else {
+  //   toLoad = (
+  //     <BasketPage
+  //       dispatch={dispatch}
+  //       text={state.text}
+  //       items={state.basket}
+  //       isEmpty={state.emptyBasket}
+  //       showSearch={false}
+  //     />
+  //   );
+  // }
 
-  return <div>{toLoad}</div>;
+  // const Main = (
+  //   <MainPage
+  //     text={state.text}
+  //     dispatch={dispatch}
+  //     items={items}
+  //     showSearch={true}
+  //     basket={state.basket.length}
+  //   />
+  // );
+  // const Basket = (
+  //   <BasketPage
+  //     dispatch={dispatch}
+  //     text={state.text}
+  //     items={state.basket}
+  //     isEmpty={state.emptyBasket}
+  //     showSearch={false}
+  //   />
+  // );
+  console.log(state.loadedPage);
+  return (
+    <div>
+      <Routes>
+        <Route
+          exact
+          path="/My-shop/"
+          element={
+            <MainPage
+              text={state.text}
+              dispatch={dispatch}
+              items={items}
+              showSearch={true}
+              basket={state.basket.length}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/My-shop/Basket"
+          element={
+            <BasketPage
+              dispatch={dispatch}
+              text={state.text}
+              items={state.basket}
+              isEmpty={state.emptyBasket}
+              showSearch={false}
+            />
+          }
+        />
+        {
+          (state.loadedPage = "subPage" && (
+            <Route exact path="/My-shop/Product" />
+          ))
+        }
+      </Routes>
+    </div>
+  );
 }

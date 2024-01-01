@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ACTIONS } from "../App";
+import { Link } from "react-router-dom";
 export function Header({
   dispatch,
   text,
@@ -55,7 +56,7 @@ export function Header({
                 onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
                 className="header-all"
               >
-                All
+                <Link to="/My-shop/">All</Link>
               </li>
               <li
                 onClick={() =>
@@ -99,20 +100,24 @@ export function Header({
                 Electronics
               </li>
               <li className="relative">
-                <img
-                  src="basket2.png"
-                  alt=""
-                  className="basket"
-                  onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
-                />
+                <Link to="/My-shop/Basket">
+                  <img
+                    src="basket2.png"
+                    alt=""
+                    className="basket"
+                    onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
+                  />
+                </Link>
                 {NumOfItemsInBasket > 0 && toLoad}
               </li>
             </ul>
-            <img
-              src="logo192.png"
-              className="logo"
-              onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
-            />
+            <Link to="/My-shop/">
+              <img
+                src="logo192.png"
+                className="logo"
+                onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
+              />
+            </Link>
           </div>
         </nav>
 
