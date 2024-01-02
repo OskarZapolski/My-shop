@@ -66,7 +66,9 @@ export function Header({
                   })
                 }
               >
-                Men
+                <Link to="/My-shop/" className="link">
+                  Men
+                </Link>
               </li>
 
               <li
@@ -77,7 +79,9 @@ export function Header({
                   })
                 }
               >
-                Woman
+                <Link to="/My-shop/" className="link">
+                  Woman
+                </Link>
               </li>
               <li
                 onClick={() =>
@@ -87,7 +91,9 @@ export function Header({
                   })
                 }
               >
-                Jewelery
+                <Link to="/My-shop/" className="link">
+                  Jewelery
+                </Link>
               </li>
               <li
                 onClick={() =>
@@ -97,7 +103,9 @@ export function Header({
                   })
                 }
               >
-                Electronics
+                <Link to="/My-shop/" className="link">
+                  Electronics
+                </Link>
               </li>
               <li className="relative">
                 <Link to="/My-shop/Basket">

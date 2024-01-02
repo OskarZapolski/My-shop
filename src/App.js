@@ -285,7 +285,9 @@ export default function App() {
   //     showSearch={false}
   //   />
   // );
-  console.log(state.loadedPage);
+  console.log(state.subPage);
+
+  //napraw w items target blank
   return (
     <div>
       <Routes>
@@ -315,11 +317,7 @@ export default function App() {
             />
           }
         />
-        {
-          (state.loadedPage = "subPage" && (
-            <Route exact path="/My-shop/Product" />
-          ))
-        }
+        <Route exact path="/My-shop/Product" element={state.subPage} />
       </Routes>
     </div>
   );
