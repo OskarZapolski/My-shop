@@ -27,6 +27,7 @@ function reducer(state, { type, payload }) {
         data: updateData(payload.data, ""),
         oldData: updateData(payload.data, ""),
         emptyBasket: true,
+        subPage: <>Hello</>,
       };
     case ACTIONS.TEXT:
       return {
@@ -42,6 +43,17 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         loadedPage: "subPage",
+        img: payload.img,
+        title: payload.title,
+        des: payload.description,
+        price: payload.price,
+        rate: payload.rate,
+        id: payload.id,
+        sizeSel: payload.selectedSize,
+        showProduct: payload.showProduct,
+
+        category: payload.category,
+
         subPage: payload.showProduct(
           payload.img,
           payload.title,
@@ -225,6 +237,18 @@ export default function App() {
     );
   }
 
+  const page = showProduct(
+    state.img,
+    state.title,
+    state.des,
+    state.price,
+    state.rate,
+    state.id,
+    state.sizeSel,
+    state.showProduct,
+    state.isSizeSelected,
+    state.basket.length
+  );
   const items = state.data.map((data) => {
     return (
       <Item
@@ -238,6 +262,7 @@ export default function App() {
         showProduct={showProduct}
         category={data.category}
         selectedSize={data.selectedSize}
+        loadedPage={state.loadedPage}
       />
     );
   });
@@ -285,8 +310,21 @@ export default function App() {
   //     showSearch={false}
   //   />
   // );
-  console.log(state.subPage);
-
+  // if (state.subPage) {
+  //   console.log(
+  //     state.subPage.props.title,
+  //     state.subPage.props.isSizeSelected,
+  //     state.subPage.props.img,
+  //     state.subPage.props.description,
+  //     state.subPage.props.price,
+  //     state.subPage.props.rate,
+  //     state.subPage.props.size,
+  //     state.subPage.props.category,
+  //     state.basket.length,
+  //     state.subPage
+  //   );
+  // }
+  console.log(page);
   //napraw w items target blank
   return (
     <div>
@@ -317,7 +355,8 @@ export default function App() {
             />
           }
         />
-        <Route exact path="/My-shop/Product" element={state.subPage} />
+
+        <Route exact path="/My-shop/Product" element={page} />
       </Routes>
     </div>
   );

@@ -22,7 +22,7 @@ export function SubPage({
   const style = {
     backgroundImage: `url(${img})`,
   };
-
+  console.log(price);
   const size = sizes.map((size) => {
     if (category == "electronics") {
       return;

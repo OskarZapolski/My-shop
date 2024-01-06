@@ -24,6 +24,7 @@ export function Header({
   } else {
     toLoad = <div className="alert-new-item">new item</div>;
   }
+
   return (
     <>
       <header style={style}>
