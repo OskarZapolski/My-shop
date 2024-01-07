@@ -27,7 +27,6 @@ function reducer(state, { type, payload }) {
         data: updateData(payload.data, ""),
         oldData: updateData(payload.data, ""),
         emptyBasket: true,
-        subPage: <>Hello</>,
       };
     case ACTIONS.TEXT:
       return {
@@ -43,16 +42,6 @@ function reducer(state, { type, payload }) {
       return {
         ...state,
         loadedPage: "subPage",
-        img: payload.img,
-        title: payload.title,
-        des: payload.description,
-        price: payload.price,
-        rate: payload.rate,
-        id: payload.id,
-        sizeSel: payload.selectedSize,
-        showProduct: payload.showProduct,
-
-        category: payload.category,
 
         subPage: payload.showProduct(
           payload.img,
@@ -202,7 +191,7 @@ export default function App() {
       .then((data) => dispatch({ type: ACTIONS.FETCH, payload: { data } }))
       .catch((err) => console.log(err));
   }, []);
-
+  console.log(state.loadedPage);
   function showProduct(
     img,
     title,
@@ -237,18 +226,6 @@ export default function App() {
     );
   }
 
-  const page = showProduct(
-    state.img,
-    state.title,
-    state.des,
-    state.price,
-    state.rate,
-    state.id,
-    state.sizeSel,
-    state.showProduct,
-    state.isSizeSelected,
-    state.basket.length
-  );
   const items = state.data.map((data) => {
     return (
       <Item
@@ -324,7 +301,7 @@ export default function App() {
   //     state.subPage
   //   );
   // }
-  console.log(page);
+
   //napraw w items target blank
   return (
     <div>
@@ -356,7 +333,7 @@ export default function App() {
           }
         />
 
-        <Route exact path="/My-shop/Product" element={page} />
+        <Route exact path="/My-shop/Product" element={<SubPage />} />
       </Routes>
     </div>
   );

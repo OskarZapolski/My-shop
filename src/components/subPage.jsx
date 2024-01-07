@@ -1,5 +1,6 @@
 import { ACTIONS } from "../App";
 import { Header } from "./header";
+import { useLocation } from "react-router";
 export function SubPage({
   sizes,
   dispatch,
@@ -17,13 +18,13 @@ export function SubPage({
   category,
   basket,
 }) {
-  console.log(selectedSize);
-  console.log(basket);
+  const location = useLocation();
+  console.log(location.state);
   const style = {
-    backgroundImage: `url(${img})`,
+    backgroundImage: `url(${location.state.img})`,
   };
   console.log(price);
-  const size = sizes.map((size) => {
+  const size = location.state.sizes.map((size) => {
     if (category == "electronics") {
       return;
     }
@@ -130,9 +131,13 @@ export function SubPage({
       <div className="sub-page" key={id}>
         <div style={style} className="sub-image-product"></div>
         <div className="sub-product-info">
-          <h2>{title}</h2>
-          <p className="sub-product-price">{price.toFixed(2)}$</p>
-          <p className="sub-product-description">{description}</p>
+          <h2>{location.state.title}</h2>
+          <p className="sub-product-price">
+            {location.state.price.toFixed(2)}$
+          </p>
+          <p className="sub-product-description">
+            {location.state.description}
+          </p>
           <div className="sub-sizes">{size}</div>
           {toLoad}
         </div>
