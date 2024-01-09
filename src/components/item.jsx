@@ -8,20 +8,7 @@ export function Item(props) {
 
   return (
     <div key={props.id} className="product">
-      <Link
-        to="/My-shop/Product"
-        state={{
-          sizes: ["S", "M", "L", "XL"],
-          img: props.image,
-          title: props.title,
-          description: props.description,
-          price: props.price,
-          rate: props.rate,
-          id: props.id,
-          selectedSize: props.selectedSize,
-          category: props.category,
-        }}
-      >
+      <Link to="/My-shop/Product">
         <div
           className="product-img"
           style={style}

@@ -17,6 +17,7 @@ export const ACTIONS = {
   GO_TO_BASKET: "go-to-basket",
   DELETE_PRODUCT: "delete-product",
   SELECT_SIZE: "select-size",
+  CLICKED_ITEM_IN_BASKET: "clicked-item-in-basket",
 };
 
 function reducer(state, { type, payload }) {
@@ -54,7 +55,7 @@ function reducer(state, { type, payload }) {
           payload.showProduct,
           state.isSizeSelected,
           payload.category,
-          state.basket
+          state.basket.length
         ),
       };
     case ACTIONS.CLOSE_POPUP:
@@ -92,6 +93,11 @@ function reducer(state, { type, payload }) {
             price: payload.price,
             id: payload.id,
             selectedSize: payload.selectedSize,
+            description: payload.description,
+            rate: payload.rate,
+            showProduct: payload.showProduct,
+            isSizeSelected: false,
+            category: payload.category,
           },
         ],
         subPage: payload.showProduct(
@@ -130,6 +136,23 @@ function reducer(state, { type, payload }) {
         ...state,
 
         data: Addsize(state.data, payload.id, payload.size),
+        subPage: payload.showProduct(
+          payload.img,
+          payload.title,
+          payload.description,
+          payload.price,
+          payload.rate,
+          payload.id,
+          payload.size,
+          payload.showProduct,
+          payload.isSizeSelected,
+          payload.category,
+          state.basket.length
+        ),
+      };
+    case ACTIONS.CLICKED_ITEM_IN_BASKET:
+      return {
+        ...state,
         subPage: payload.showProduct(
           payload.img,
           payload.title,
@@ -333,7 +356,7 @@ export default function App() {
           }
         />
 
-        <Route exact path="/My-shop/Product" element={<SubPage />} />
+        <Route exact path="/My-shop/Product" element={state.subPage} />
       </Routes>
     </div>
   );

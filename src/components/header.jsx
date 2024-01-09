@@ -8,14 +8,14 @@ export function Header({
   style,
   NumOfItemsInBasket,
 }) {
-  const [message, setMessage] = useState(false);
+  const [message, setMessage] = useState(true);
   function Alert() {
     setTimeout(() => {
       setMessage(true);
     }, 3000);
   }
   useEffect(() => {
-    setMessage(false);
+    setMessage((prevMessage) => !prevMessage);
     Alert();
   }, [NumOfItemsInBasket]);
   let toLoad;
@@ -24,7 +24,7 @@ export function Header({
   } else {
     toLoad = <div className="alert-new-item">new item</div>;
   }
-
+  console.log(message, NumOfItemsInBasket);
   return (
     <>
       <header style={style}>

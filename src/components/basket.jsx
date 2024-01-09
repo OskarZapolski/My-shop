@@ -10,6 +10,11 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
         dispatch={dispatch}
         id={item.id}
         selectedSize={item.selectedSize}
+        description={item.description}
+        rate={item.rate}
+        showProduct={item.showProduct}
+        isSizeSelected={true}
+        category={item.category}
       />
     );
   });
@@ -27,6 +32,7 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
       />
       {!isEmpty ? (
         <div className="basket-main">
+          <h1 className="basket-count">Items: {items.length}</h1>
           <div className="grid">
             <div className="basket-body">{products}</div>
             <div className="div-paying">
