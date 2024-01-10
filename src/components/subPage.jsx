@@ -17,7 +17,16 @@ export function SubPage({
   showSearch,
   category,
   basket,
+  changing,
 }) {
+  let action;
+  if (changing) {
+    action = ACTIONS.ITEM_UPDATED;
+  } else {
+    changing = false;
+    action = ACTIONS.ADD_PRODUCT_TO_BASKET;
+  }
+  console.log(changing);
   const style = {
     backgroundImage: `url(${img})`,
   };
@@ -51,6 +60,7 @@ export function SubPage({
               showProduct,
               price,
               isSizeSelected: true,
+              changing,
             },
           })
         }
@@ -66,7 +76,7 @@ export function SubPage({
         className="button-buy"
         onClick={() =>
           dispatch({
-            type: ACTIONS.ADD_PRODUCT_TO_BASKET,
+            type: action,
             payload: {
               id,
               title,
@@ -78,6 +88,7 @@ export function SubPage({
               isSizeSelected: true,
               selectedSize: true,
               category,
+              changing: false,
             },
           })
         }
@@ -95,7 +106,7 @@ export function SubPage({
           className="button-buy"
           onClick={() =>
             dispatch({
-              type: ACTIONS.ADD_PRODUCT_TO_BASKET,
+              type: action,
               payload: {
                 id,
                 size,
@@ -107,6 +118,7 @@ export function SubPage({
                 showProduct,
                 price,
                 isSizeSelected: false,
+                changing: false,
               },
             })
           }
@@ -116,7 +128,7 @@ export function SubPage({
       </>
     );
   }
-  console.log(basket);
+
   return (
     <>
       <Header

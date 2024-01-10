@@ -17,7 +17,8 @@ export const ACTIONS = {
   GO_TO_BASKET: "go-to-basket",
   DELETE_PRODUCT: "delete-product",
   SELECT_SIZE: "select-size",
-  CLICKED_ITEM_IN_BASKET: "clicked-item-in-basket",
+
+  ITEM_UPDATED: "item-updated",
 };
 
 function reducer(state, { type, payload }) {
@@ -55,7 +56,9 @@ function reducer(state, { type, payload }) {
           payload.showProduct,
           state.isSizeSelected,
           payload.category,
-          state.basket.length
+
+          state.basket.length,
+          payload.changing
         ),
       };
     case ACTIONS.CLOSE_POPUP:
@@ -106,7 +109,7 @@ function reducer(state, { type, payload }) {
           payload.description,
           payload.price,
           payload.rate,
-          payload.id,
+          (payload.id = nanoid()),
           (payload.size = false),
           payload.showProduct,
           payload.isSizeSelected,
@@ -147,25 +150,14 @@ function reducer(state, { type, payload }) {
           payload.showProduct,
           payload.isSizeSelected,
           payload.category,
-          state.basket.length
+          state.basket.length,
+          payload.changing
         ),
       };
-    case ACTIONS.CLICKED_ITEM_IN_BASKET:
+    case ACTIONS.ITEM_UPDATED:
       return {
         ...state,
-        subPage: payload.showProduct(
-          payload.img,
-          payload.title,
-          payload.description,
-          payload.price,
-          payload.rate,
-          payload.id,
-          payload.size,
-          payload.showProduct,
-          payload.isSizeSelected,
-          payload.category,
-          state.basket.length
-        ),
+        basket: Addsize(state.basket, payload.id, payload.selectedSize),
       };
   }
 }
@@ -187,7 +179,6 @@ function Addsize(data, id, size) {
     }
   });
 }
-console.log("object");
 function FindProduct(data, text) {
   return data.filter((datas) => {
     return datas.title.toUpperCase().includes(text.toUpperCase())
@@ -214,19 +205,20 @@ export default function App() {
       .then((data) => dispatch({ type: ACTIONS.FETCH, payload: { data } }))
       .catch((err) => console.log(err));
   }, []);
-  console.log(state.loadedPage);
+
   function showProduct(
     img,
     title,
     description,
     price,
     rate,
-    id,
+    id = nanoid(),
     size,
     showProduct,
     isSizeSelected,
     category,
-    basket
+    basket,
+    changing = false
   ) {
     return (
       <SubPage
@@ -239,12 +231,13 @@ export default function App() {
         price={price}
         rate={rate}
         text={state.text}
-        id={nanoid()}
+        id={id}
         selectedSize={size}
         showProduct={showProduct}
         showSearch={false}
         category={category}
         basket={basket}
+        changing={changing}
       />
     );
   }
@@ -253,7 +246,6 @@ export default function App() {
     return (
       <Item
         description={data.description}
-        id={data.id}
         image={data.image}
         title={data.title}
         rate={data.rating.rate}
@@ -267,65 +259,6 @@ export default function App() {
     );
   });
 
-  // let toLoad;
-  // if (state.loadedPage == "MainPage") {
-  //   toLoad = (
-  //     <MainPage
-  //       text={state.text}
-  //       dispatch={dispatch}
-  //       items={items}
-  //       showSearch={true}
-  //       basket={state.basket.length}
-  //     />
-  //   );
-  // } else if (state.loadedPage == "subPage") {
-  //   toLoad = state.subPage;
-  // } else {
-  //   toLoad = (
-  //     <BasketPage
-  //       dispatch={dispatch}
-  //       text={state.text}
-  //       items={state.basket}
-  //       isEmpty={state.emptyBasket}
-  //       showSearch={false}
-  //     />
-  //   );
-  // }
-
-  // const Main = (
-  //   <MainPage
-  //     text={state.text}
-  //     dispatch={dispatch}
-  //     items={items}
-  //     showSearch={true}
-  //     basket={state.basket.length}
-  //   />
-  // );
-  // const Basket = (
-  //   <BasketPage
-  //     dispatch={dispatch}
-  //     text={state.text}
-  //     items={state.basket}
-  //     isEmpty={state.emptyBasket}
-  //     showSearch={false}
-  //   />
-  // );
-  // if (state.subPage) {
-  //   console.log(
-  //     state.subPage.props.title,
-  //     state.subPage.props.isSizeSelected,
-  //     state.subPage.props.img,
-  //     state.subPage.props.description,
-  //     state.subPage.props.price,
-  //     state.subPage.props.rate,
-  //     state.subPage.props.size,
-  //     state.subPage.props.category,
-  //     state.basket.length,
-  //     state.subPage
-  //   );
-  // }
-
-  //napraw w items target blank
   return (
     <div>
       <Routes>

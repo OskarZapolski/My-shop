@@ -24,7 +24,7 @@ export function Header({
   } else {
     toLoad = <div className="alert-new-item">new item</div>;
   }
-  console.log(message, NumOfItemsInBasket);
+
   return (
     <>
       <header style={style}>

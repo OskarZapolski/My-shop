@@ -13,15 +13,14 @@ export function BasketItem({
   showProduct,
   isSizeSelected,
 }) {
-  console.log(selectedSize);
   return (
     <div
       className="basket-wraper"
       onClick={() =>
         dispatch({
-          type: ACTIONS.CLICKED_ITEM_IN_BASKET,
+          type: ACTIONS.PRODUCT_CLICKED,
           payload: {
-            size: selectedSize,
+            selectedSize,
             title,
             img,
             price,
@@ -32,6 +31,7 @@ export function BasketItem({
             category,
             showProduct,
             isSizeSelected,
+            changing: true,
           },
         })
       }
