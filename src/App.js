@@ -58,7 +58,8 @@ function reducer(state, { type, payload }) {
           payload.category,
 
           state.basket.length,
-          payload.changing
+          payload.changing,
+          state.basket
         ),
       };
     case ACTIONS.CLOSE_POPUP:
@@ -114,7 +115,9 @@ function reducer(state, { type, payload }) {
           payload.showProduct,
           payload.isSizeSelected,
           payload.category,
-          state.basket.length + 1
+          state.basket.length + 1,
+          (payload.changing = false),
+          state.basket
         ),
       };
     case ACTIONS.GO_TO_BASKET:
@@ -151,13 +154,29 @@ function reducer(state, { type, payload }) {
           payload.isSizeSelected,
           payload.category,
           state.basket.length,
-          payload.changing
+          payload.changing,
+          state.basket
         ),
       };
     case ACTIONS.ITEM_UPDATED:
       return {
         ...state,
         basket: Addsize(state.basket, payload.id, payload.selectedSize),
+        subPage: payload.showProduct(
+          payload.img,
+          payload.title,
+          payload.description,
+          payload.price,
+          payload.rate,
+          payload.id,
+          payload.size,
+          payload.showProduct,
+          payload.isSizeSelected,
+          payload.category,
+          state.basket.length,
+          payload.changing,
+          Addsize(state.basket, payload.id, payload.selectedSize)
+        ),
       };
   }
 }
@@ -217,8 +236,9 @@ export default function App() {
     showProduct,
     isSizeSelected,
     category,
-    basket,
-    changing = false
+    basketLen,
+    changing = false,
+    basket
   ) {
     return (
       <SubPage
@@ -236,8 +256,9 @@ export default function App() {
         showProduct={showProduct}
         showSearch={false}
         category={category}
-        basket={basket}
+        basketLen={basketLen}
         changing={changing}
+        basket={basket}
       />
     );
   }
@@ -271,7 +292,7 @@ export default function App() {
               dispatch={dispatch}
               items={items}
               showSearch={true}
-              basket={state.basket.length}
+              basket={state.basket}
             />
           }
         />
@@ -285,6 +306,7 @@ export default function App() {
               items={state.basket}
               isEmpty={state.emptyBasket}
               showSearch={false}
+              basket={state.basket}
             />
           }
         />

@@ -16,8 +16,9 @@ export function SubPage({
   isSizeSelected,
   showSearch,
   category,
-  basket,
+  basketLen,
   changing,
+  basket,
 }) {
   let action;
   if (changing) {
@@ -88,7 +89,7 @@ export function SubPage({
               isSizeSelected: true,
               selectedSize: true,
               category,
-              changing: false,
+              changing: action == ACTIONS.ITEM_UPDATED ? true : false,
             },
           })
         }
@@ -118,7 +119,7 @@ export function SubPage({
                 showProduct,
                 price,
                 isSizeSelected: false,
-                changing: false,
+                changing: action == ACTIONS.ITEM_UPDATED ? true : false,
               },
             })
           }
@@ -136,7 +137,9 @@ export function SubPage({
         text={text}
         showSearch={showSearch}
         style={{ position: "fixed", width: "100vw", zIndex: "2" }}
-        NumOfItemsInBasket={basket}
+        NumOfItemsInBasket={basketLen}
+        change={changing}
+        basket={basket}
       />
       <div className="sub-page" key={id}>
         <div style={style} className="sub-image-product"></div>

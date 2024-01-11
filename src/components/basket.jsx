@@ -1,6 +1,13 @@
 import { Header } from "./header";
 import { BasketItem } from "./basketItem";
-export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
+export function BasketPage({
+  dispatch,
+  text,
+  items,
+  isEmpty,
+  showSearch,
+  basket,
+}) {
   const products = items.map((item) => {
     return (
       <BasketItem
@@ -29,6 +36,7 @@ export function BasketPage({ dispatch, text, items, isEmpty, showSearch }) {
         text={text}
         showSearch={showSearch}
         NumOfItemsInBasket={items}
+        basket={basket}
       />
       {!isEmpty ? (
         <div className="basket-main">

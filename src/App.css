@@ -66,10 +66,7 @@ header {
   width: 32px;
   height: 32px;
 }
-.product-iiii {
-  width: 200px;
-  height: 240px;
-}
+
 .link {
   color: black;
   text-decoration: none;
@@ -216,7 +213,7 @@ main {
   line-height: 1.3;
   background-color: rgb(245, 244, 244);
   margin-bottom: 8px;
-  height: 20vh;
+  height: 23vh;
 }
 .basket-img {
   margin: 20px;
@@ -305,6 +302,7 @@ main {
   bottom: 0;
   left: -13px;
 }
+
 .navbar input[type="checkbox"],
 .navbar .hamburger-lines {
   display: none;
