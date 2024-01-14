@@ -9,6 +9,7 @@ export function Header({
   NumOfItemsInBasket,
   change = false,
   basket,
+  alertInfo,
 }) {
   const [message, setMessage] = useState(true);
 
@@ -26,11 +27,13 @@ export function Header({
   if (message) {
     toLoad = <div className="num-items-basket">{NumOfItemsInBasket}</div>;
   } else {
-    change
-      ? (toLoad = (
+    alertInfo
+      ? (toLoad = change ? (
           <div className="alert-new-item item-changed">Item changed</div>
+        ) : (
+          <div className="alert-new-item ">New Item</div>
         ))
-      : (toLoad = <div className="alert-new-item">new item</div>);
+      : setMessage(true);
   }
 
   return (
@@ -65,7 +68,9 @@ export function Header({
                 onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
                 className="header-all"
               >
-                <Link to="/My-shop/">All</Link>
+                <Link to="/My-shop/" className="link">
+                  All
+                </Link>
               </li>
               <li
                 onClick={() =>
@@ -130,7 +135,7 @@ export function Header({
             </ul>
             <Link to="/My-shop/">
               <img
-                src="logo192.png"
+                src="logo512.png"
                 className="logo"
                 onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
               />

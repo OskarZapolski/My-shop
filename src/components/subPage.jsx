@@ -19,6 +19,7 @@ export function SubPage({
   basketLen,
   changing,
   basket,
+  alertInfo,
 }) {
   let action;
   if (changing) {
@@ -140,6 +141,7 @@ export function SubPage({
         NumOfItemsInBasket={basketLen}
         change={changing}
         basket={basket}
+        alertInfo={alertInfo}
       />
       <div className="sub-page" key={id}>
         <div style={style} className="sub-image-product"></div>

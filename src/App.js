@@ -117,7 +117,8 @@ function reducer(state, { type, payload }) {
           payload.category,
           state.basket.length + 1,
           (payload.changing = false),
-          state.basket
+          state.basket,
+          (payload.alert = true)
         ),
       };
     case ACTIONS.GO_TO_BASKET:
@@ -155,7 +156,8 @@ function reducer(state, { type, payload }) {
           payload.category,
           state.basket.length,
           payload.changing,
-          state.basket
+          state.basket,
+          (payload.alert = false)
         ),
       };
     case ACTIONS.ITEM_UPDATED:
@@ -175,7 +177,8 @@ function reducer(state, { type, payload }) {
           payload.category,
           state.basket.length,
           payload.changing,
-          Addsize(state.basket, payload.id, payload.selectedSize)
+          Addsize(state.basket, payload.id, payload.selectedSize),
+          (payload.alert = true)
         ),
       };
   }
@@ -238,7 +241,8 @@ export default function App() {
     category,
     basketLen,
     changing = false,
-    basket
+    basket,
+    alert = false
   ) {
     return (
       <SubPage
@@ -259,6 +263,7 @@ export default function App() {
         basketLen={basketLen}
         changing={changing}
         basket={basket}
+        alertInfo={alert}
       />
     );
   }
