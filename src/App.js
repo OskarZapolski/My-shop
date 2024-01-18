@@ -303,7 +303,7 @@ export default function App() {
         />
         <Route
           exact
-          path="/My-shop/#/Basket"
+          path="/My-shop/Basket"
           element={
             <BasketPage
               dispatch={dispatch}
