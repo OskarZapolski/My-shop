@@ -5,7 +5,7 @@ import { MainPage } from "./components/mainPage";
 import { SubPage } from "./components/subPage";
 import { BasketPage } from "./components/basket";
 import { nanoid } from "nanoid";
-import { Route, Link, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 export const ACTIONS = {
   PRODUCT_CLICKED: "product-clicked",

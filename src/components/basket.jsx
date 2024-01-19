@@ -1,5 +1,6 @@
 import { Header } from "./header";
 import { BasketItem } from "./basketItem";
+import { Form } from "./form";
 export function BasketPage({
   dispatch,
   text,
@@ -48,6 +49,7 @@ export function BasketPage({
                 <p>TOTAL:</p> <p>{sum.toFixed(2)}$</p>
               </div>
               <button className="basket-pay-btn">PAY</button>
+              <Form price={sum.toFixed(2)} />
             </div>
           </div>
         </div>
