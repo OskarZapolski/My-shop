@@ -1,3 +1,5 @@
-#It is my web shop which I made with react.js
+# It is my web shop 
+I did it using React.js, CSS, HTML and API.
+
 
 Link: https://oskarzapolski.github.io/My-shop/
