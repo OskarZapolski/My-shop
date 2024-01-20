@@ -28,7 +28,7 @@ export function SubPage({
     changing = false;
     action = ACTIONS.ADD_PRODUCT_TO_BASKET;
   }
-  console.log(changing);
+
   const style = {
     backgroundImage: `url(${img})`,
   };

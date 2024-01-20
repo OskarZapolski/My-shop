@@ -339,6 +339,23 @@ main {
 .form-input {
   padding: 3px;
 }
+.div-submit {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.div-submit p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.btn-submit {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
 @media only screen and (max-width: 1100px) {
   .container {
     max-width: 1200px;

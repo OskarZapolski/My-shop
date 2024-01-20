@@ -1,6 +1,7 @@
 import { Header } from "./header";
 import { BasketItem } from "./basketItem";
 import { Form } from "./form";
+import { useState } from "react";
 export function BasketPage({
   dispatch,
   text,
@@ -9,6 +10,13 @@ export function BasketPage({
   showSearch,
   basket,
 }) {
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  let styles = {
+    display: isFormVisible ? "flex" : "none",
+  };
+  function btnPayHandle() {
+    setIsFormVisible(true);
+  }
   const products = items.map((item) => {
     return (
       <BasketItem
@@ -48,8 +56,10 @@ export function BasketPage({
               <div className="total-price">
                 <p>TOTAL:</p> <p>{sum.toFixed(2)}$</p>
               </div>
-              <button className="basket-pay-btn">PAY</button>
-              <Form price={sum.toFixed(2)} />
+              <button className="basket-pay-btn" onClick={btnPayHandle}>
+                PAY
+              </button>
+              <Form price={sum.toFixed(2)} dispatch={dispatch} style={styles} />
             </div>
           </div>
         </div>

@@ -17,8 +17,8 @@ export const ACTIONS = {
   GO_TO_BASKET: "go-to-basket",
   DELETE_PRODUCT: "delete-product",
   SELECT_SIZE: "select-size",
-
   ITEM_UPDATED: "item-updated",
+  FORM_SUBMIT: "form-submit",
 };
 
 function reducer(state, { type, payload }) {
@@ -180,6 +180,12 @@ function reducer(state, { type, payload }) {
           Addsize(state.basket, payload.id, payload.selectedSize),
           (payload.alert = true)
         ),
+      };
+    case ACTIONS.FORM_SUBMIT:
+      return {
+        ...state,
+        basket: [],
+        emptyBasket: true,
       };
   }
 }
