@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ACTIONS } from "../App";
 
-export function Form({ price, dispatch, style }) {
+export function Form({ price, dispatch, style, setIsFormVisible }) {
   function btnHandler(e) {
     e.preventDefault();
     if (formData.fname || formData.mail || formData.lname || formData.address) {
@@ -20,12 +20,21 @@ export function Form({ price, dispatch, style }) {
     mail: "",
     address: "",
   });
-  function InputHandler(name, value) {
+  function inputHandler(name, value) {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  }
+  function closeForm() {
+    setIsFormVisible(false);
   }
   return (
     <div className="background-blur" style={style}>
       <form className="pay-form">
+        <img
+          src="close.png"
+          alt=""
+          className="close-icon"
+          onClick={closeForm}
+        />
         <div className="form-flex">
           <label htmlFor="fname" className="form-label">
             First name
@@ -37,7 +46,7 @@ export function Form({ price, dispatch, style }) {
             className="form-input"
             placeholder="First name"
             value={formData.firsName}
-            onChange={(e) => InputHandler(e.target.name, e.target.value)}
+            onChange={(e) => inputHandler(e.target.name, e.target.value)}
           />
         </div>
         <div className="form-flex">
@@ -51,7 +60,7 @@ export function Form({ price, dispatch, style }) {
             className="form-input"
             placeholder="Last name"
             value={formData.lastName}
-            onChange={(e) => InputHandler(e.target.name, e.target.value)}
+            onChange={(e) => inputHandler(e.target.name, e.target.value)}
           />
         </div>
         <div className="form-flex">
@@ -65,7 +74,7 @@ export function Form({ price, dispatch, style }) {
             className="form-input"
             placeholder="default@mail.com"
             value={formData.mail}
-            onChange={(e) => InputHandler(e.target.name, e.target.value)}
+            onChange={(e) => inputHandler(e.target.name, e.target.value)}
           />
         </div>
         <div className="form-flex">
@@ -79,7 +88,7 @@ export function Form({ price, dispatch, style }) {
             className="form-input"
             placeholder="Address"
             value={formData.address}
-            onChange={(e) => InputHandler(e.target.name, e.target.value)}
+            onChange={(e) => inputHandler(e.target.name, e.target.value)}
           />
         </div>
         <div className="div-submit">

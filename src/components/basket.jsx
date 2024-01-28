@@ -34,9 +34,9 @@ export function BasketPage({
       />
     );
   });
-  let sum = 0;
+  let total = 0;
   for (let i = 0; i < products.length; i++) {
-    sum += products[i].props.price;
+    total += products[i].props.price;
   }
   return (
     <div>
@@ -54,12 +54,17 @@ export function BasketPage({
             <div className="basket-body">{products}</div>
             <div className="div-paying">
               <div className="total-price">
-                <p>TOTAL:</p> <p>{sum.toFixed(2)}$</p>
+                <p>TOTAL:</p> <p>{total.toFixed(2)}$</p>
               </div>
               <button className="basket-pay-btn" onClick={btnPayHandle}>
                 PAY
               </button>
-              <Form price={sum.toFixed(2)} dispatch={dispatch} style={styles} />
+              <Form
+                price={total.toFixed(2)}
+                dispatch={dispatch}
+                style={styles}
+                setIsFormVisible={setIsFormVisible}
+              />
             </div>
           </div>
         </div>
