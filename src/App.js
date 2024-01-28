@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer } from "react";
 import "./App.css";
 import { Item } from "./components/item";
 import { MainPage } from "./components/mainPage";
@@ -127,7 +127,7 @@ function reducer(state, { type, payload }) {
         loadedPage: "basketPage",
       };
     case ACTIONS.DELETE_PRODUCT:
-      if (state.basket.length == 1)
+      if (state.basket.length === 1)
         return {
           ...state,
           emptyBasket: true,
@@ -187,11 +187,13 @@ function reducer(state, { type, payload }) {
         basket: [],
         emptyBasket: true,
       };
+    default:
+      return state;
   }
 }
 
 function deleteProduct(data, id) {
-  return data.filter((data) => data.id != id);
+  return data.filter((data) => data.id !== id);
 }
 function updateData(data, value) {
   return data.map((data) => {
@@ -216,7 +218,7 @@ function FindProduct(data, text) {
 }
 function getCategory(oldData, category) {
   return oldData.filter((data) => {
-    return data.category == category;
+    return data.category === category;
   });
 }
 

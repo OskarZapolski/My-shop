@@ -38,10 +38,10 @@ export function BasketItem({
     >
       <Link to="/My-shop/Product" className="link">
         <div className="d-grid">
-          <img src={img} className="basket-img"></img>
+          <img src={img} className="basket-img" alt="close icon"></img>
           <div>
             <span className="basket-title">{title}</span>
-            <p>Size: {selectedSize}</p>
+            {category !== "electronics" && <p>Size: {selectedSize}</p>}
 
             <p className="basket-price">{price.toFixed(2)}$</p>
           </div>

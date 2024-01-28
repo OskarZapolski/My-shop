@@ -33,8 +33,8 @@ export function SubPage({
     backgroundImage: `url(${img})`,
   };
 
-  const size = sizes.map((size) => {
-    if (category == "electronics") {
+  const size = sizes.map((size, index) => {
+    if (category === "electronics") {
       return;
     }
     const sizeStyle = {
@@ -46,6 +46,7 @@ export function SubPage({
     }
     return (
       <div
+        key={index}
         style={sizeStyle}
         className="size-div"
         onClick={() =>
@@ -72,7 +73,7 @@ export function SubPage({
     );
   });
   let toLoad;
-  if (category == "electronics") {
+  if (category === "electronics") {
     toLoad = (
       <button
         className="button-buy"
@@ -90,7 +91,7 @@ export function SubPage({
               isSizeSelected: true,
               selectedSize: true,
               category,
-              changing: action == ACTIONS.ITEM_UPDATED ? true : false,
+              changing,
             },
           })
         }
@@ -120,7 +121,7 @@ export function SubPage({
                 showProduct,
                 price,
                 isSizeSelected: false,
-                changing: action == ACTIONS.ITEM_UPDATED ? true : false,
+                changing,
               },
             })
           }

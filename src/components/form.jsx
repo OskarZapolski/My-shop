@@ -68,7 +68,7 @@ export function Form({ price, dispatch, style, setIsFormVisible }) {
             Mail
           </label>
           <input
-            type="mail"
+            type="email"
             id="mail"
             name="mail"
             className="form-input"

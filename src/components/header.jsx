@@ -13,14 +13,14 @@ export function Header({
 }) {
   const [message, setMessage] = useState(true);
 
-  function Alert() {
+  function alert() {
     setTimeout(() => {
       setMessage(true);
     }, 3000);
   }
   useEffect(() => {
     setMessage((prevMessage) => !prevMessage);
-    Alert();
+    alert();
   }, [NumOfItemsInBasket, basket]);
   let toLoad;
 
@@ -125,7 +125,7 @@ export function Header({
                 <Link to="/My-shop/Basket">
                   <img
                     src="basket2.png"
-                    alt=""
+                    alt="shopping basket"
                     className="basket"
                     onClick={() => dispatch({ type: ACTIONS.GO_TO_BASKET })}
                   />
@@ -138,6 +138,7 @@ export function Header({
                 src="logo192.png"
                 className="logo"
                 onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
+                alt="logo"
               />
             </Link>
           </div>
