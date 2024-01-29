@@ -233,7 +233,7 @@ export default function App() {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => dispatch({ type: ACTIONS.FETCH, payload: { data } }))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("error" + err));
   }, []);
 
   function showProduct(
