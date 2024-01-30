@@ -135,7 +135,7 @@ export function Header({
             </ul>
             <Link to="/My-shop/">
               <img
-                src="logo192.png"
+                src="logo.png"
                 className="logo"
                 onClick={() => dispatch({ type: ACTIONS.CLOSE_POPUP })}
                 alt="logo"
