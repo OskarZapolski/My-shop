@@ -133,7 +133,7 @@ export function Header({
                 {NumOfItemsInBasket > 0 && toLoad}
               </li>
             </ul>
-            <Link to="/My-shop/">
+            <Link to="/My-shop/" className="main-page-link">
               <img
                 src="logo.png"
                 className="logo"

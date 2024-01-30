@@ -275,7 +275,7 @@ export default function App() {
       />
     );
   }
-
+  console.log(state.data);
   const items = state.data.map((data) => {
     return (
       <Item
