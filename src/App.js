@@ -43,7 +43,6 @@ function reducer(state, { type, payload }) {
     case ACTIONS.PRODUCT_CLICKED:
       return {
         ...state,
-        loadedPage: "subPage",
 
         subPage: payload.showProduct(
           payload.img,
@@ -68,7 +67,6 @@ function reducer(state, { type, payload }) {
         text: "",
         data: state.oldData,
         categoryData: false,
-        loadedPage: "MainPage",
       };
     case ACTIONS.GO_TO_CATEGORY:
       return {
@@ -76,7 +74,7 @@ function reducer(state, { type, payload }) {
         text: "",
         categoryData: getCategory(state.oldData, payload.category),
         data: getCategory(state.oldData, payload.category),
-        loadedPage: "MainPage",
+
         selectedSize: "",
       };
     case ACTIONS.ADD_PRODUCT_TO_BASKET:
@@ -124,7 +122,6 @@ function reducer(state, { type, payload }) {
     case ACTIONS.GO_TO_BASKET:
       return {
         ...state,
-        loadedPage: "basketPage",
       };
     case ACTIONS.DELETE_PRODUCT:
       if (state.basket.length === 1)
@@ -226,7 +223,6 @@ export default function App() {
   const [state, dispatch] = useReducer(reducer, {
     data: [],
     basket: [],
-    loadedPage: "MainPage",
   });
 
   useEffect(() => {
@@ -275,7 +271,7 @@ export default function App() {
       />
     );
   }
-  console.log(state.data);
+
   const items = state.data.map((data) => {
     return (
       <Item
@@ -288,7 +284,6 @@ export default function App() {
         showProduct={showProduct}
         category={data.category}
         selectedSize={data.selectedSize}
-        loadedPage={state.loadedPage}
       />
     );
   });

@@ -15,6 +15,7 @@ export function BasketItem({
 }) {
   return (
     <div
+      key={id}
       className="basket-wraper"
       onClick={() =>
         dispatch({
